@@ -25,7 +25,7 @@ def parse_xlsx(df: pd.DataFrame, driver: webdriver):
         logging.info(f'Обрабатываю строку: \n{row.to_string()}')
         # Итерируемся по каждому столбцу в строке
         for column in df.columns:
-            # Формируем label для поиска поля ввода, вулючая 2 исключения
+            # Формируем label для поиска поля ввода, включая 2 исключения
             column_label = 'label' + ''.join([word for word in column.split(' ') if word != ' '])
             if column_label == 'labelPhoneNumber': column_label = 'labelPhone'
             if column_label == 'labelRoleinCompany': column_label = 'labelRole'
@@ -84,7 +84,7 @@ def main():
     # Начинаю внесение строк
     parse_xlsx(df=df_input, driver=driver)
 
-    # Делаем и сохраняем скрин скрин
+    # Делаем и сохраняем скрин
     driver.get_screenshot_as_file('result.png')
     logging.info('Сделал и сохранил скриншот')
 
